@@ -1,0 +1,15 @@
+@app.route('/edit_pwd/<int:id>', methods = ['GET','POST'])
+@login_required
+def edit2(current_user.get_id()):
+    c1 = Customer.query.get_or_404(id)
+    form = Change_pwdForm()
+
+    if request.form:
+        c1.password = form.confirm_password.data
+        db.session.commit()
+        flash('You have successfully changed your password.','success')
+        return redirect(url_for('trial'))
+    form.password.data = c1.password
+    return render_template('edit2.html', action =  "Edit", title = 'Change Password', form = form)
+
+

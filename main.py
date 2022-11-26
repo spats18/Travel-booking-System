@@ -1,8 +1,16 @@
-from website import create_app # we can do this bec now our website is a package because of init file
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
-app = create_app()
+app = Flask(__name__)
+#to create a provide front end UI to the user
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://admin:admin123@localhost:8080/tourism_db'
+app.config['SECRET_KEY'] = 'd0063c4e0a1b18016d982395e18ea5ca'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+db = SQLAlchemy(app)
 
-if __name__ == '__main__':
-    app.run(debug = True) 
-    # debug = True will automatically rerun our website if we did any change in the code. 
-    #will turn it off in production
+login_manager = LoginManager(app)
+
+from routes import *
+if __name__== '__main__':
+    app.run(debug = True, port=1234, threaded = True)
