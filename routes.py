@@ -4,17 +4,20 @@ from flask import Flask, render_template, request, url_for, flash, redirect
 # import postgresql
 from main import db, app
 from flask_login import login_user, current_user, logout_user, login_required
+from flask_caching import Cache
 
+cache = Cache(app)
 # db.init_app(app=app)
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
+@cache.cached(timeout=50)
 def home():
     return render_template('home.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # if current_user.is_authenticated:
-    #     return redirect(url_for('home'))
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = LoginForm()
 
     if request.form:
@@ -34,11 +37,15 @@ def login():
 
 @app.route('/about', methods=['GET', 'POST'])
 def about():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     print('Hey!')
     return render_template('about.html')
 
 @app.route('/signup', methods=["GET", "POST"])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = RegistrationForm()
     if request.form:
         obj = customer(c_name=form.name.data, c_email=form.email.data, c_password=form.confirm_password.data,
@@ -52,6 +59,8 @@ def register():
 
 @app.route('/booking', methods=['GET', 'POST'])
 def booking():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = BookingForm()
     if request.form:
         user = current_user
