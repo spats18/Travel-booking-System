@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
-import postgresql
+#import postgresql
 from main import db, app
 
 from flask_login import login_user, current_user, logout_user, login_required
@@ -98,6 +98,24 @@ def logout():
     if current_user.is_authenticated:
         logout_user()
         return redirect(url_for('home'))
+
+@app.route("/currentbookings")
+@login_required
+def currentbookings():
+    user = current_user
+    table1 = db.session.query(customer.c_name, customer.c_email, 
+    hotel.h_name, bookings.b_amount_paid).select_from(customer).join(booked_trips
+    ).join(bookings).join(hotel). \
+	filter(
+		customer.c_id == booked_trips.c_id
+	).filter(
+		booked_trips.b_id == bookings.b_id
+	).filter(
+		bookings.h_id == hotel.h_id
+	).filter(
+		customer.c_name ==  user.c_name).all()
+
+    return render_template('currentbookings.html', table1=table1)
 
 
 # @app.route('/edit_cust/<int:id>', methods = ['GET','POST'])
