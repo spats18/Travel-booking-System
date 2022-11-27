@@ -1,73 +1,80 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   
-  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/95D896C9-38D4-AE4B-BB0F-6B6759D221C8/main.js" charset="UTF-8"></script></head>
-  <body>
-    <div class="jumbotron">
-  <h1 class="display-4">Tourism Management System</h1>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+  <script type="text/javascript"
+    src="https://gc.kis.v2.scr.kaspersky-labs.com/95D896C9-38D4-AE4B-BB0F-6B6759D221C8/main.js"
+    charset="UTF-8"></script>
+</head>
+
+<body>
+  <div class="jumbotron">
+    <h1 class="display-4">Tourism Management System</h1>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav justify-content-end">
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tour">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/currentbookings">View Bookings</a>
+        </li>
+
+      </ul>
     </div>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="nav justify-content-end">
-      <li class="nav-item active">
-        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/tour">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/currentbookings">View Bookings</a>
-      </li>
-          
-    </ul>
+  </nav><br><br>
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card" style="width: 18rem;" float=right>
+        <img class="card-img-top" src="/static/TM1.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">PACKAGES</h5>
+          <p class="card-text">Choose from the amazing offers availables in the package. We present to you different
+            offers, for your convenience.</p>
+        </div>
+      </div>
+      <div align="center">
+        {% if current_user.is_authenticated %}
+        Hi {{ current_user.name }}!
+        {% endif %}
+      </div>
+    </div>
   </div>
-</nav><br><br>
-<div class = "row">
-  <div class = "leftcolumn"> 
-    <div class="card" style="width: 18rem;" float=right>
-    <img class="card-img-top" src="/static/TM1.jpg" alt="Card image cap">
-    <div class="card-body">
-     <h5 class="card-title">PACKAGES</h5>
-     <p class="card-text">Choose from the amazing offers availables in the package. We present to you different offers, for your convenience.</p>
-   </div>
-  </div>
-  <div align="center">
-    {% if current_user.is_authenticated %}
-      Hi {{ current_user.name }}!
-    {% endif %}
-  </div>
-</div>
-</div>
-</div><br>
-    <form action="" method="post" align="center">
-<div  class="center" >
-<h2>BOOK A TRIP</h2>
-<br>
-<br>
-{{form.h_name.label}}
-{{form.h_name}}
-{{form.cr_name.label}}
-{{form.cr_name}}<br><br>
-{{form.b_start_date.label}}
-{{form.b_start_date}}<br><br>
-{{form.b_end_date.label}}
-{{form.b_end_date}}<br><br>
-{{form.submit}}
-<!--<label for="hotel">Choose a Hotel:</label>
+  </div><br>
+  <form action="" method="post" align="center">
+    <div class="center">
+      <h2>BOOK A TRIP</h2>
+      <br>
+      <br>
+      {{form.h_name.label}}
+      {{form.h_name}}
+      {{form.cr_name.label}}
+      {{form.cr_name}}<br><br>
+      {{form.b_start_date.label}}
+      {{form.b_start_date}}<br><br>
+      {{form.b_end_date.label}}
+      {{form.b_end_date}}<br><br>
+      {{form.submit}}
+      <!--<label for="hotel">Choose a Hotel:</label>
 <select id="hotels" name="h_name" size="5">
   <option value="Aloft Tempe">Aloft Tempe</option>
   <option value="hotel_saab">Hotel Saab</option>
@@ -92,19 +99,26 @@
 <button type="submit" name="submit" value="Login"><b><f2>Submit</f2></b></button>
 </div>
   </div>-->
-</form>
-<script>
-function submit() {
-  /*Put all the data posting code here*/
- document.getElementById("myForm").reset();
-}
-</script>    
-    
+  </form>
+  <script>
+    function submit() {
+      /*Put all the data posting code here*/
+      document.getElementById("myForm").reset();
+    }
+  </script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
