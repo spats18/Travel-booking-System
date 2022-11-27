@@ -5,12 +5,11 @@ from flask import Flask, render_template, request, url_for, flash, redirect
 from main import db, app
 from flask_login import login_user, current_user, logout_user, login_required
 
-
+# db.init_app(app=app)
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     return render_template('home.html')
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
