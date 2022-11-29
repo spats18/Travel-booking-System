@@ -3,6 +3,7 @@
         "availables",
         "currentbookings",
         "leftcolumn",
+        "Sedona",
         "sqlalchemy",
         "wtforms"
     ]
