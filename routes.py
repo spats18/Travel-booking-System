@@ -8,6 +8,12 @@ from flask_caching import Cache
 
 cache = Cache(app)
 # db.init_app(app=app)
+
+#Change login required process
+login_manager.login_view = "/home"
+login_manager.login_message = "User needs to be logged in to view this page"
+login_manager.login_message_category = "warning"
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
 @cache.cached(timeout=50)
