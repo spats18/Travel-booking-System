@@ -64,9 +64,8 @@ def register():
 
 
 @app.route('/booking', methods=['GET', 'POST'])
+@login_required
 def booking():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
     form = BookingForm()
     if request.form:
         user = current_user
