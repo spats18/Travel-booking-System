@@ -43,9 +43,6 @@ def login():
 
 @app.route('/about', methods=['GET', 'POST'])
 def about():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-    print('Hey!')
     return render_template('about.html')
 
 @app.route('/signup', methods=["GET", "POST"])
