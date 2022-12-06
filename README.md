@@ -12,7 +12,7 @@ This project not only keeps the record of various customers and their bookings, 
 7. On this page, you will be able to see the name, email address, hotel name, and amount paid for your booking(s).
 8. If you would like more information on this Tourism Management application, please visit the ‘About’ page.
 ## ER Diagram
-![] (Image/Travel%20Booking%20System%20ER.png)
+![](Image/Travel%20Booking%20System%20ER.png)
 ### Tables
 #### 1. Customer
 ##### Customer account details
